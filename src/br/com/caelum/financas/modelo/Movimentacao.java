@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.caelum.financas.modelo;
 
 import java.math.BigDecimal;
@@ -13,6 +8,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -20,22 +17,30 @@ import javax.persistence.TemporalType;
  *
  * @author Gustavo
  */
+@NamedQueries({
+    @NamedQuery(name = "mediaDaContaPeloTipoMovimentacao",
+            query = "select avg(m.valor) from Movimentacao m where m.conta=:pConta  and m.tipoMovimentacao = :pTipo"),
+    @NamedQuery(name = "totalDeMovimentacoes",
+            query = "select count(m) from Movimentacao m where m.conta = :pConta")
+})
+
 @Entity
 public class Movimentacao {
-    
-    @Id @GeneratedValue
+
+    @Id
+    @GeneratedValue
     private int id;
-    
+
     private BigDecimal valor;
-    
+
     @Enumerated(EnumType.STRING)
     private TipoMovimentacao tipoMovimentacao;
-    
+
     @Temporal(TemporalType.DATE)
     private Calendar data;
-    
+
     private String descricao;
-    
+
     @ManyToOne
     private Conta conta;
 
