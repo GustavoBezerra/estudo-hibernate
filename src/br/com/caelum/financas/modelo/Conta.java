@@ -19,10 +19,10 @@ public class Conta {
 	private String banco;
 	private String agencia;
 	private String numero;
-        
-        @OneToMany(mappedBy="conta")
-        private List<Movimentacao> movimentacoes;
-        
+
+	@OneToMany(mappedBy = "conta")
+	private List<Movimentacao> movimentacoes;
+
 	public Integer getId() {
 		return id;
 	}
@@ -63,17 +63,18 @@ public class Conta {
 		this.numero = numero;
 	}
 
-    /**
-     * @return the movimentacoes
-     */
-    public List<Movimentacao> getMovimentacoes() {
-        return movimentacoes;
-    }
+	/**
+	 * @return the movimentacoes
+	 */
+	public List<Movimentacao> getMovimentacoes() {
+		return movimentacoes;
+	}
 
-    /**
-     * @param movimentacoes the movimentacoes to set
-     */
-    public void setMovimentacoes(List<Movimentacao> movimentacoes) {
-        this.movimentacoes = movimentacoes;
-    }
+	/**
+	 * @param movimentacoes
+	 *            the movimentacoes to set
+	 */
+	public void setMovimentacoes(List<Movimentacao> movimentacoes) {
+		this.movimentacoes = movimentacoes;
+	}
 }
